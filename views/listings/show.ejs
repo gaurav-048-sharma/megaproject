@@ -1,0 +1,60 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+    <div class="col-8 offset-2 ">
+        <h3><%= listing.title %></h3>
+        </div>
+    <div class="card col-6 offset-2" >
+         <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing image">
+    <div class="card-body">
+      <p class="card-text">
+
+        <%= listing.description %> <br>
+        &#8377; <%= listing.price %> <br>
+        <%= listing.location %> <br>
+        <%= listing.country %>
+    </p>
+    </div>
+  </div>
+   
+    
+    <br />
+    <br>
+
+<div class="btns">
+    <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark offset-2">Edit </a>
+    <a href="/listings" class="btn btn-dark">Back</a>
+    <br /><br />
+
+<form method="POST" class="btn btn-dark" action="/listings/<%=listing._id%>?_method=DELETE">
+  <button>Delete </button>
+</form>
+</div>
+<br>
+
+<div class="col-8 offset-2">
+  <hr>
+  <h4>Leave a review</h4>
+
+  <form action="/listings/<%=listing.id  %>/reviews" method="POST" novalidate class="needs-validation">
+    <div class="mb-3 mt-3">
+      <label for="rating" class="form-label">Rating</label>
+      <input type="range" min="1" max="5" class="form-range" id="rating" name="review[rating]">
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="comment" class="form-label">Comments</label>
+      <textarea name="reveiw[comment]" id="comment" cols="30" rows="10" class="form-control" required> </textarea>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-dark">submit</button>
+
+  </form>
+
+  <h4>all listings</h4>
+  <% for(review of reviews) { %>
+    <li> <%= reveiw.comment %></li>
+    <% } %>
+</div>
+<br>
+</div>
+<br>
+<script src="/js/script.js"></script>
